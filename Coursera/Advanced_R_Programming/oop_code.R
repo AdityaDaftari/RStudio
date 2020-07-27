@@ -117,11 +117,11 @@ setMethod(f = "summary",
               summary_df <- rbind(summary_df,c(i,means))
             }
             colnames(summary_df) <- c("visit",rooms)
-            summary_df
+            list(paste("ID:",object@id),summary_df)
           })
 
 setMethod("summary",
           "room",
           function(object,...){
-            summary(object@values$value)
+            list(paste("ID:",object@id),summary(object@values$value))
           })
