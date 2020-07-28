@@ -1,0 +1,107 @@
+## Gradually increasing input n from 0 to 1000.
+---------------------------------------------------------------------------------------------
+> n <- 0
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr    min     lq   mean median     uq    max neval
+   Factorial_loop(n)  11300  13600  17620  15500  21400  54300   100
+ Factorial_reduce(n) 372800 463500 506067 515600 521750 859500   100
+   Factorial_func(n)    700    900   1376   1200   1700   2900   100
+    Factorial_mem(n)    700    900   1538   1300   1800  13000   100
+---------------------------------------------------------------------------------------------
+> n <- 1
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr    min     lq   mean median     uq    max neval
+   Factorial_loop(n)   8200   9400  12240  12150  14150  30700   100
+ Factorial_reduce(n) 322200 325650 350517 330500 365250 723000   100
+   Factorial_func(n)   1200   1550   2235   2200   2750   6100   100
+    Factorial_mem(n)    900   1150   1982   1750   2600   6900   100
+---------------------------------------------------------------------------------------------
+> n <- 5
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr    min     lq   mean median     uq    max neval
+   Factorial_loop(n)   8600  10300  13691  13700  14750  84900   100
+ Factorial_reduce(n) 332200 337700 360022 342400 371300 750800   100
+   Factorial_func(n)   4000   4500   5347   5250   6000  13200   100
+    Factorial_mem(n)    900   1100   1939   1500   2450  20300   100
+---------------------------------------------------------------------------------------------
+> n <- 10
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: microseconds
+                expr   min     lq    mean median    uq   max neval
+   Factorial_loop(n)   9.2  11.65  16.008  14.65  16.0 113.7   100
+ Factorial_reduce(n) 349.2 353.50 415.010 356.75 440.2 960.4   100
+   Factorial_func(n)   7.6   8.75  10.166   9.60  11.3  17.0   100
+    Factorial_mem(n)   1.0   1.40   2.414   2.10   2.6  34.7   100
+---------------------------------------------------------------------------------------------
+> n <- 20
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr    min     lq   mean median     uq     max neval
+   Factorial_loop(n)   9100  12000  17736  16050  19150  141400   100
+ Factorial_reduce(n) 468400 500900 603592 527650 637050 1157400   100
+   Factorial_func(n)  14100  16600  19137  17950  20900   30700   100
+    Factorial_mem(n)    900   1300   2821   2150   2800   46200   100
+---------------------------------------------------------------------------------------------
+> n <- 50
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr    min     lq   mean median     uq     max neval
+   Factorial_loop(n)  10000  17250  21476  19800  29150   36400   100
+ Factorial_reduce(n) 531200 559750 755180 863850 883500 1348700   100
+   Factorial_func(n)  35800  48550  56443  58450  61600  155400   100
+    Factorial_mem(n)    900   1800   4042   2700   3700  123800   100
+---------------------------------------------------------------------------------------------
+> n <- 100
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr    min     lq   mean median     uq     max neval
+   Factorial_loop(n)  12400  14700  19347  20700  22200   34900   100
+ Factorial_reduce(n) 668400 678150 720745 687500 741650 1142500   100
+   Factorial_func(n)  76700  77750  87262  81250  91550  281200   100
+    Factorial_mem(n)    900   1500   3708   2400   3000  131000   100
+---------------------------------------------------------------------------------------------
+> n <- 500
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr     min      lq    mean  median      uq     max neval
+   Factorial_loop(n)   26600   31200   42445   37600   51350  120400   100
+ Factorial_reduce(n) 1521900 1611850 2013246 1688900 2541200 5186800   100
+   Factorial_func(n)  381400  417350  587972  504600  662600 4973900   100
+    Factorial_mem(n)     900    1850   14336    3200    4250 1118900   100
+---------------------------------------------------------------------------------------------
+> n <- 1000
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr     min      lq    mean  median      uq     max neval
+   Factorial_loop(n)   45500   52550   61790   57900   67950  117900   100
+ Factorial_reduce(n) 2681500 2875950 3303471 2937600 3307050 9281500   100
+   Factorial_func(n)  785400  860300 1095124  979800 1187050 5371400   100
+    Factorial_mem(n)     900    1400   16935    3000    4300 1382600   100
+---------------------------------------------------------------------------------------------
+## Giving input n = 500 after factorials till 1000 have been calculated earlier.
+## Factorial_mem works much much faster.
+> n <- 500
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: microseconds
+                expr    min      lq     mean  median      uq    max neval
+   Factorial_loop(n)   27.5   31.05   36.691   37.25   38.65   77.6   100
+ Factorial_reduce(n) 1580.8 1609.50 1729.250 1626.75 1660.70 5289.9   100
+   Factorial_func(n)  397.0  409.10  451.439  422.25  452.50 1058.5   100
+    Factorial_mem(n)    1.0    1.70    2.539    2.70    3.25    6.1   100
+---------------------------------------------------------------------------------------------
+## Clearing out the fact_vector.
+> fact_vector <- c(1)
+## Setting n=1000 directly with no lower factorials saved in fact_vector.
+## Factorial_mem is slower than the earlier case of n = 500 but still the fastest.
+> n <- 1000
+> microbenchmark(Factorial_loop(n), Factorial_reduce(n), Factorial_func(n), Factorial_mem(n))
+Unit: nanoseconds
+                expr     min      lq    mean  median      uq      max neval
+   Factorial_loop(n)   45500   48350  113042   56300   60700  5783700   100
+ Factorial_reduce(n) 2742400 2899900 3126569 2947700 3017850  8924200   100
+   Factorial_func(n)  803600  877300 1075902  978050 1114050  7547700   100
+    Factorial_mem(n)     900    1650  142351    3250    4200 13938600   100
+---------------------------------------------------------------------------------------------
