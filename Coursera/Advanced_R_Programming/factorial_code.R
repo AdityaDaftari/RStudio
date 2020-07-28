@@ -6,6 +6,7 @@
   
 Factorial_loop <- function(n){
   # computes the factorial of an integer using looping (such as a for loop)
+  if(n==0) return(1)
   fact <- 1
   for(i in seq(n))
   {
@@ -16,6 +17,7 @@ Factorial_loop <- function(n){
 
 Factorial_reduce <- function(n){ 
   # computes the factorial using the reduce() function in the purrr package.
+  if(n==0) return(1)
   library(purrr)
   fact <- reduce(seq(n), function(a,b) a*b)
   fact
